@@ -3,7 +3,11 @@ import PropTypes from 'prop-types'
 
 const GameBoard = props => {
   return (
-    <div>GameBoardh</div>
+    <div className="board">
+        <div className="board-row">
+            {}
+        </div>
+    </div>
   )
 }
 
