@@ -9,7 +9,7 @@ const GameBoard = ({ isSinglePlayer }) => {
 
   const renderSquare = (index) => {
     return (
-      <button className={`square ${xIsTurn ? 'square-x' : 'square-o'}`} onClick={() => handleClick(index)}>
+      <button className={`square ${board[index] === 'X' ? 'square-x' : 'square-o'}`} onClick={() => handleClick(index)}>
         {board[index]}
       </button>
     );
