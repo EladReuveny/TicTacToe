@@ -1,9 +1,31 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+}
+
+.board {
+  height:max-content;
+}
+
+.board-row {
+  display: flex;
+  justify-content: center;
+} 
+
+.square {
+  font-size: 25px;
+  padding: 40px;
+  /* margin: .8px; */
+  width: 100px; /* Set the width */
+  height: 100px; /* Set the height */
+  border: 2px solid black; 
+}
+
+.square-x {
+  color: blue;
+}
+
+.square-o {
+  color: red;
 }
