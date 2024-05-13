@@ -2,24 +2,31 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color-scheme: light dark;
   background-color: #242424;
+  display: flex; /* Ensure the body uses flexbox for centering */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+  height: 100vh; /* Make the body take up the full height of the viewport */
 }
 
 .board {
-  height:max-content;
+  display: flex;
+  flex-direction: column; /* Arrange the board rows vertically */
+  align-items: center; /* Center the board horizontally */
 }
 
 .board-row {
   display: flex;
-  justify-content: center;
-} 
+}
 
 .square {
-  font-size: 25px;
+  font-size: 40px;
   padding: 40px;
-  /* margin: .8px; */
   width: 100px; /* Set the width */
   height: 100px; /* Set the height */
   border: 2px solid black; 
+  display: flex; /* Ensure the content is centered inside the square */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
 }
 
 .square-x {
