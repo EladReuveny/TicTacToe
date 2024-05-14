@@ -1,17 +1,41 @@
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color-scheme: light dark;
-  background-color: #242424;
-  display: flex; /* Ensure the body uses flexbox for centering */
+  background-color: rgb(2, 2, 91);
+  display: flex; 
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
-  height: 100vh; /* Make the body take up the full height of the viewport */
+  margin-top: 15px;
 }
 
 .board {
   display: flex;
   flex-direction: column; /* Arrange the board rows vertically */
   align-items: center; /* Center the board horizontally */
+  /* opacity: 0; Initially hide the text */
+  animation: boardAppearance 2s ease forwards; /* Apply the animation */
+}
+
+/* Define the animation */
+@keyframes boardAppearance {
+  from { 
+    opacity: 0; 
+    transform: translateX(-50px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0); 
+  }
+}
+
+.status {
+  margin-bottom: 20px;
+  font-size: 20px;
+  border-style: ridge;
+  border-width: 1px 0px;
+  border-color: darkturquoise;
+  padding: 3px 10px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.5);
 }
 
 .board-row {
@@ -23,16 +47,126 @@
   padding: 40px;
   width: 100px; /* Set the width */
   height: 100px; /* Set the height */
-  border: 2px solid black; 
+  border: 3px solid rgba(255, 255, 255, 0.781);
   display: flex; /* Ensure the content is centered inside the square */
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
+  border-top: none;
+  border-left: none;
+  background-color: transparent;
 }
 
+/* Remove the right border from the last square in each row */
+.board-row .square:last-child {
+  border-right: none;
+}
+
+/* Remove the bottom border from the last row */
+.board-row:last-child .square:last-child,
+.board-row:nth-child(4) .square:nth-child(2),
+.board-row:last-child .square:first-child
+ {
+  border-bottom: none;
+}
+
+.board-row:last-child .square:last-child {
+  border-bottom-right-radius: 5%;
+}
 .square-x {
-  color: blue;
+  color: rgb(56, 110, 247);
 }
 
 .square-o {
   color: red;
+}
+
+.score {
+  display: flex;
+  justify-content: space-around;
+  font-size: 25px;
+  padding: 5px 0px;
+  margin-bottom: 25px;
+  border: 1px solid white;
+  box-shadow: 0 0 20px 1px darkturquoise;
+}
+
+.score-x {
+  position:relative;
+  left: -10%;
+  box-shadow: 100px 0 1px 5px darkturquoise;
+}
+
+.score-o {
+  position:relative;
+  right: -10%;
+}
+
+.x-player {
+  margin-left: 25px;
+  font-size: 25px;
+  color: rgb(56, 110, 247);
+}
+
+.o-player {
+  margin-left: 25px;
+  font-size: 25px;
+  color: red;
+}
+
+#o-player {
+  position: relative;
+  right: 65px;
+}
+
+#x-player {
+  position: relative;
+  left: 5px;
+}
+
+.player-score {
+  /* box-shadow: 0px 2px 0px 0.3px darkturquoise; */
+  padding-left: 8px;
+}
+
+#x-score {
+  position: relative; /* or absolute, depending on your layout */
+  left: 102px; /* Move the span 20px from the left */
+}
+
+#o-score {
+  position: relative; /* or absolute, depending on your layout */
+  left: -70px; /* Move the span 20px from the left */
+}
+
+#o-score {
+  position: relative; /* or absolute, depending on your layout */
+  left: -70px; /* Move the span 20px from the left */
+}
+
+.buttons-div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 35px;
+  border-style: ridge;
+  border-width: 1px 0px;
+  border-color: aqua;
+  padding: 7px 0px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.5);
+  margin: 25px 50px;
+  border-radius: 8px;
+}
+
+.buttons-div .next-set-btn,
+.buttons-div .reset-btn {
+  font-size: 20px;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  
+}
+
+.buttons-div .next-set-btn:hover,
+.buttons-div .reset-btn:hover {
+  background-color: rgba(54, 54, 213, .6);
+  transition: all .3s ease;
 }
