@@ -5,18 +5,16 @@
   display: flex; 
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .board {
   display: flex;
   flex-direction: column; /* Arrange the board rows vertically */
   align-items: center; /* Center the board horizontally */
-  /* opacity: 0; Initially hide the text */
   animation: boardAppearance 2s ease forwards; /* Apply the animation */
 }
 
-/* Define the animation */
 @keyframes boardAppearance {
   from { 
     opacity: 0; 
@@ -162,11 +160,11 @@
   background-color: transparent;
   border: none;
   padding: 5px;
-  
 }
 
 .buttons-div .next-set-btn:hover,
 .buttons-div .reset-btn:hover {
   background-color: rgba(54, 54, 213, .6);
+  transform: translateY(-1.4px);
   transition: all .3s ease;
 }

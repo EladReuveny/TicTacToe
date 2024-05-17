@@ -12,7 +12,7 @@ const GameBoard = ({ isSinglePlayer }) => {
 
   const renderSquare = (index) => {
     return (
-      <button
+      <button id={`square-btn-${index}`}
         className={`square ${board[index] === "X" ? "square-x" : "square-o"}`}
         onClick={() => handleClick(index)}
       >
@@ -22,7 +22,7 @@ const GameBoard = ({ isSinglePlayer }) => {
   };
 
   const handleClick = (index) => {
-    if (calculateWinner(board) || board[index]) return;
+    if (winner || board[index]) return;
     xIsTurn ? (board[index] = "X") : (board[index] = "O");
     setBoard(board);
     setXIsTurn(!xIsTurn);
@@ -54,10 +54,8 @@ const GameBoard = ({ isSinglePlayer }) => {
 
   const status = winner ? (
     <>
-      <span className={winner === "X" ? "x-player" : "o-player"}>
-        {winner}
-      </span>
-      {' '}is the winner. Game Over!
+      <span className={winner === "X" ? "x-player" : "o-player"}>{winner}</span>{" "}
+      is the winner. Game Over!
     </>
   ) : board.every((value) => value !== null) ? (
     `DRAW!`
@@ -78,12 +76,20 @@ const GameBoard = ({ isSinglePlayer }) => {
     <>
       <div className="score">
         <div className="score-x">
-          <span id="x-score" className="player-score">{xScore} </span>
-          <span id="x-player" className="x-player">X</span>
+          <span id="x-score" className="player-score">
+            {xScore}{" "}
+          </span>
+          <span id="x-player" className="x-player">
+            X
+          </span>
         </div>
         <div className="score-o">
-          <span id="o-score" className="player-score">{oScore} </span>
-          <span id="o-player" className="o-player">O</span>
+          <span id="o-score" className="player-score">
+            {oScore}{" "}
+          </span>
+          <span id="o-player" className="o-player">
+            O
+          </span>
         </div>
       </div>
       <div className="board">
@@ -105,22 +111,24 @@ const GameBoard = ({ isSinglePlayer }) => {
         </div>
       </div>
       <div className="buttons-div">
-        <button 
-          className="next-set-btn" 
+        <button
+          className="next-set-btn"
           onClick={() => {
             setBoard(() => Array(9).fill(null));
-            setXIsTurn(xIsTurn)
-          }}>
+            setXIsTurn(xIsTurn);
+          }}
+        >
           Next set
         </button>
-        <button 
-          className="reset-btn" 
+        <button
+          className="reset-btn"
           onClick={() => {
             setBoard(() => Array(9).fill(null));
             setXIsTurn(true);
             setXScore(0);
             setOScore(0);
-          }}>
+          }}
+        >
           Reset
         </button>
       </div>
