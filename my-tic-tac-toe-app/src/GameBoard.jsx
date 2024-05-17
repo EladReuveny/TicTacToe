@@ -24,7 +24,8 @@ const GameBoard = ({ isSinglePlayer }) => {
   };
 
   const handleClick = (index) => {
-    if (winner || board[index]) return;
+    if (winner || board[index]) 
+      return;
 
     setBoard((prevBoard) => {
       const newBoard = [...prevBoard];
@@ -39,7 +40,6 @@ const GameBoard = ({ isSinglePlayer }) => {
     if (isSinglePlayer && !xIsTurn && !winner) {
       setTimeout(() => {
         const rndIndex = getEmptyRandomIndex();
-        console.log(rndIndex);
 
         setBoard((prevBoard) => {
           const newBoard = [...prevBoard];
