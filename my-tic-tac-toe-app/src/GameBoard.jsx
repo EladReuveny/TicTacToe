@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { useEffect } from "react";
-
-const initialBoard = Array(9).fill(null);
+import React, { useEffect, useState } from "react";
 
 const GameBoard = ({ isSinglePlayer }) => {
+  const initialBoard = Array(9).fill(null);
+
   const [board, setBoard] = useState(initialBoard);
   const [xIsTurn, setXIsTurn] = useState(true);
   const [xScore, setXScore] = useState(0);
@@ -12,20 +11,53 @@ const GameBoard = ({ isSinglePlayer }) => {
 
   const renderSquare = (index) => {
     return (
-      <button id={`square-btn-${index}`}
+      <button
+        id={`square-btn-${index}`}
         className={`square ${board[index] === "X" ? "square-x" : "square-o"}`}
         onClick={() => handleClick(index)}
       >
-        {board[index]}
+        <span className={`${board[index] ? "text-fade" : ""}`}>
+          {board[index]}
+        </span>
       </button>
     );
   };
 
   const handleClick = (index) => {
     if (winner || board[index]) return;
-    xIsTurn ? (board[index] = "X") : (board[index] = "O");
-    setBoard(board);
-    setXIsTurn(!xIsTurn);
+
+    setBoard((prevBoard) => {
+      const newBoard = [...prevBoard];
+      newBoard[index] = xIsTurn ? "X" : "O";
+      return newBoard;
+    });
+
+    setXIsTurn((prevXIsTurn) => !prevXIsTurn);
+  };
+
+  useEffect(() => {
+    if (isSinglePlayer && !xIsTurn && !winner) {
+      setTimeout(() => {
+        const rndIndex = getEmptyRandomIndex();
+        console.log(rndIndex);
+
+        setBoard((prevBoard) => {
+          const newBoard = [...prevBoard];
+          newBoard[rndIndex] = "O";
+          return newBoard;
+        });
+
+        setXIsTurn((prevXIsTurn) => !prevXIsTurn);
+      }, 500);
+    }
+  }, [xIsTurn]);
+
+  const getEmptyRandomIndex = () => {
+    let i;
+    do {
+      i = Math.floor(Math.random() * board.length);
+    } while (board[i]);
+    return i;
   };
 
   const calculateWinner = (board) => {
@@ -115,7 +147,7 @@ const GameBoard = ({ isSinglePlayer }) => {
           className="next-set-btn"
           onClick={() => {
             setBoard(() => Array(9).fill(null));
-            setXIsTurn(xIsTurn);
+            setXIsTurn(isSinglePlayer ? true : xIsTurn);
           }}
         >
           Next set

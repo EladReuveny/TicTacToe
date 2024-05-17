@@ -5,14 +5,8 @@
   display: flex; 
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
-  margin-top: 5px;
-}
-
-.board {
-  display: flex;
-  flex-direction: column; /* Arrange the board rows vertically */
-  align-items: center; /* Center the board horizontally */
-  animation: boardAppearance 2s ease forwards; /* Apply the animation */
+  margin-top: 0px;
+  animation: boardAppearance 2s ease forwards; 
 }
 
 @keyframes boardAppearance {
@@ -22,8 +16,14 @@
   }
   to { 
     opacity: 1; 
-    transform: translateX(0); 
+    transform: translateX(0px);
   }
+}
+
+.board {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
 }
 
 .status {
@@ -43,15 +43,29 @@
 .square {
   font-size: 40px;
   padding: 40px;
-  width: 100px; /* Set the width */
-  height: 100px; /* Set the height */
+  width: 100px; 
+  height: 100px; 
   border: 3px solid rgba(255, 255, 255, 0.781);
-  display: flex; /* Ensure the content is centered inside the square */
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
   border-top: none;
   border-left: none;
   background-color: transparent;
+}
+
+@keyframes textFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  } to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.text-fade {
+  animation: textFadeIn .5s ease;
 }
 
 /* Remove the right border from the last square in each row */
@@ -62,16 +76,12 @@
 /* Remove the bottom border from the last row */
 .board-row:last-child .square:last-child,
 .board-row:nth-child(4) .square:nth-child(2),
-.board-row:last-child .square:first-child
- {
+.board-row:last-child .square:first-child {
   border-bottom: none;
 }
 
-.board-row:last-child .square:last-child {
-  border-bottom-right-radius: 5%;
-}
 .square-x {
-  color: rgb(56, 110, 247);
+  color: #386ef7;
 }
 
 .square-o {
@@ -122,23 +132,22 @@
 }
 
 .player-score {
-  /* box-shadow: 0px 2px 0px 0.3px darkturquoise; */
   padding-left: 8px;
 }
 
 #x-score {
-  position: relative; /* or absolute, depending on your layout */
-  left: 102px; /* Move the span 20px from the left */
+  position: relative; 
+  left: 102px; 
 }
 
 #o-score {
-  position: relative; /* or absolute, depending on your layout */
-  left: -70px; /* Move the span 20px from the left */
+  position: relative; 
+  left: -70px; 
 }
 
 #o-score {
-  position: relative; /* or absolute, depending on your layout */
-  left: -70px; /* Move the span 20px from the left */
+  position: relative; 
+  left: -70px; 
 }
 
 .buttons-div {
@@ -148,7 +157,7 @@
   border-style: ridge;
   border-width: 1px 0px;
   border-color: aqua;
-  padding: 7px 0px;
+  padding: 2px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.5);
   margin: 25px 50px;
   border-radius: 8px;

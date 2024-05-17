@@ -4,7 +4,7 @@ import GameBoard from './GameBoard'
 const App = () => {
   return (
     <div id="container">
-      <GameBoard/>
+      <GameBoard isSinglePlayer={true}/>
     </div>
   )
 }
