@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 
-const GameBoard = ({ isSinglePlayer }) => {
+const GameBoard = () => {
   const initialBoard = Array(9).fill(null);
 
   const [board, setBoard] = useState(initialBoard);
   const [xIsTurn, setXIsTurn] = useState(true);
   const [xScore, setXScore] = useState(0);
   const [oScore, setOScore] = useState(0);
+  const [isSinglePlayer, setSinglePlayer] = useState(true);
 
   const renderSquare = (index) => {
     return (
@@ -24,8 +25,7 @@ const GameBoard = ({ isSinglePlayer }) => {
   };
 
   const handleClick = (index) => {
-    if (winner || board[index]) 
-      return;
+    if (winner || board[index]) return;
 
     setBoard((prevBoard) => {
       const newBoard = [...prevBoard];
@@ -104,6 +104,23 @@ const GameBoard = ({ isSinglePlayer }) => {
     }
   }, [winner]);
 
+  const toggleGameMode = () => {
+    setSinglePlayer((prevSinglePlayer) => !prevSinglePlayer);
+    resetBoard();
+  };
+
+  const nextSetBoard = () => {
+    setBoard(() => Array(9).fill(null));
+    setXIsTurn(isSinglePlayer ? true : xIsTurn);
+  };
+
+  const resetBoard = () => {
+    setBoard(() => Array(9).fill(null));
+    setXIsTurn(true);
+    setXScore(0);
+    setOScore(0);
+  };
+
   return (
     <>
       <div className="score">
@@ -143,37 +160,20 @@ const GameBoard = ({ isSinglePlayer }) => {
         </div>
       </div>
       <div className="buttons-div">
-        <button
-          className="next-set-btn"
-          onClick={() => {
-            setBoard(() => Array(9).fill(null));
-            setXIsTurn(isSinglePlayer ? true : xIsTurn);
-          }}
-        >
-          Next set
+        <button className="game-mode-btn" onClick={toggleGameMode}>
+          {isSinglePlayer ? "Multiplayer" : "Single player"}
         </button>
-        <button
-          className="reset-btn"
-          onClick={() => {
-            setBoard(() => Array(9).fill(null));
-            setXIsTurn(true);
-            setXScore(0);
-            setOScore(0);
-          }}
-        >
-          Reset
-        </button>
+        <div className="next-set-reset-btns-container">
+          <button className="next-set-btn" onClick={nextSetBoard}>
+            Next set
+          </button>
+          <button className="reset-btn" onClick={resetBoard}>
+            Reset
+          </button>
+        </div>
       </div>
     </>
   );
-};
-
-GameBoard.propTypes = {
-  isSinglePlayer: PropTypes.bool.isRequired,
-};
-
-GameBoard.defaultProps = {
-  isSinglePlayer: false,
 };
 
 export default GameBoard;

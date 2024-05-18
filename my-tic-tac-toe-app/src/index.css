@@ -6,10 +6,10 @@
   justify-content: center; /* Center the content horizontally */
   align-items: center; /* Center the content vertically */
   margin-top: 0px;
-  animation: boardAppearance 2s ease forwards; 
+  animation: gameAppearance 1.5s ease forwards; 
 }
 
-@keyframes boardAppearance {
+@keyframes gameAppearance {
   from { 
     opacity: 0; 
     transform: translateX(-50px); 
@@ -19,6 +19,10 @@
     transform: translateX(0px);
   }
 }
+
+/* @media screen  maxwidth {
+  
+} */
 
 .board {
   display: flex;
@@ -44,7 +48,7 @@
   font-size: 40px;
   padding: 40px;
   width: 100px; 
-  height: 100px; 
+  height: 85px; 
   border: 3px solid rgba(255, 255, 255, 0.781);
   display: flex; 
   justify-content: center;
@@ -54,18 +58,18 @@
   background-color: transparent;
 }
 
+.text-fade {
+  animation: textFadeIn .5s ease;
+}
+
 @keyframes textFadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
   } to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
-}
-
-.text-fade {
-  animation: textFadeIn .5s ease;
 }
 
 /* Remove the right border from the last square in each row */
@@ -151,29 +155,34 @@
 }
 
 .buttons-div {
+  position: absolute; /* Use fixed position to place it relative to the viewport */
+  top: 10px; /* Distance from the top of the viewport */
+  right: 15px;
   display: flex;
   flex-direction: column;
-  margin-top: 35px;
-  border-style: ridge;
-  border-width: 1px 0px;
-  border-color: aqua;
-  padding: 2px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.5);
-  margin: 25px 50px;
-  border-radius: 8px;
+  border-radius: 16px;
 }
 
 .buttons-div .next-set-btn,
-.buttons-div .reset-btn {
-  font-size: 20px;
-  background-color: transparent;
+.buttons-div .reset-btn,
+.buttons-div .game-mode-btn {
+  margin: 10px;
+  padding: 10px 20px;
   border: none;
-  padding: 5px;
+  border-radius: 16px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.buttons-div .game-mode-btn {
+  background-color: rgb(54, 54, 213);
 }
 
 .buttons-div .next-set-btn:hover,
-.buttons-div .reset-btn:hover {
+.buttons-div .reset-btn:hover,
+.buttons-div .game-mode-btn:hover {
   background-color: rgba(54, 54, 213, .6);
-  transform: translateY(-1.4px);
+  transform: translateY(-1.7px);
   transition: all .3s ease;
 }
