@@ -89,6 +89,7 @@
 }
 
 .score {
+  position: relative;
   display: flex;
   justify-content: space-around;
   font-size: 25px;
@@ -98,14 +99,25 @@
   box-shadow: 0 0 20px 1px darkturquoise;
 }
 
+.score::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  transform: translate(-5px, 0);
+  width: 80px;
+  height: 45px;
+  padding: 0 5px;
+  background: darkturquoise;
+  z-index: -1;
+}
+
 .score-x {
-  position:relative;
+  position: relative;
   left: -10%;
-  box-shadow: 100px 0 1px 5px darkturquoise;
 }
 
 .score-o {
-  position:relative;
+  position: relative;
   right: -10%;
 }
 
@@ -181,4 +193,22 @@
   background-color: rgba(54, 54, 213, .6);
   transform: translateY(-1.7px);
   transition: all .3s ease;
+}
+
+/* Media Queries */
+
+@media (max-width: 780px) {
+  .score {
+    margin: 5px 40px 15px;
+  }
+
+  .buttons-div {
+      position: relative;
+      flex-direction: row;
+      bottom: 0;
+      margin: 10px auto 80px;
+      left: 50%;
+      padding: 0 30px;
+      transform: translate(-50%, 0);
+  }
 }
