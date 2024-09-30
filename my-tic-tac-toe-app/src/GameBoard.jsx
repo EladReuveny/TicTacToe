@@ -36,7 +36,10 @@ const GameBoard = () => {
     setXIsTurn((prevXIsTurn) => !prevXIsTurn);
   };
 
+  
   useEffect(() => {
+    if (status === "DRAW!") return;
+
     if (isSinglePlayer && !xIsTurn && !winner) {
       setTimeout(() => {
         const rndIndex = getEmptyRandomIndex();

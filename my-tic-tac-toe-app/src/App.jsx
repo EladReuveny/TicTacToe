@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import GameBoard from './GameBoard'
+import React from "react";
+import GameBoard from "./GameBoard";
 
 const App = () => {
   return (
     <div id="container">
-      <GameBoard/>
+      <GameBoard />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

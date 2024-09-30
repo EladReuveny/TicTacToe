@@ -3,8 +3,8 @@
   color-scheme: light dark;
   background-color: rgb(2, 2, 91);
   display: flex; 
-  justify-content: center; /* Center the content horizontally */
-  align-items: center; /* Center the content vertically */
+  justify-content: center; 
+  align-items: center; 
   margin-top: 0px;
   animation: gameAppearance 1.5s ease forwards; 
 }
@@ -19,10 +19,6 @@
     transform: translateX(0px);
   }
 }
-
-/* @media screen  maxwidth {
-  
-} */
 
 .board {
   display: flex;
@@ -155,8 +151,8 @@
 }
 
 .buttons-div {
-  position: absolute; /* Use fixed position to place it relative to the viewport */
-  top: 10px; /* Distance from the top of the viewport */
+  position: absolute;
+  top: 10px;
   right: 15px;
   display: flex;
   flex-direction: column;
